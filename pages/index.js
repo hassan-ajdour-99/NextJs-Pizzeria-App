@@ -1,16 +1,16 @@
 import Head from "next/head";
-import Image from "next/image";
-import styles from "../styles/Home.module.css";
+import classes from "../styles/Home.module.css";
+import Features from "../components/Features";
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div className={classes.container}>
       <Head>
         <title> Pizza Delivery App </title>
         <meta name="description" content="Best Pizza Show in Town" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      HomePage
+      <Features />
     </div>
   );
 }
