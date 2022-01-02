@@ -1,7 +1,11 @@
+import classes from "./Footer.module.css";
+import Image from "next/image";
+
 function Footer() {
   return (
-    <div>
-      <h1> Footer </h1>
+    <div className={classes.container}>
+      <div className={classes.item}></div>
+      <div className={classes.item}></div>
     </div>
   );
 }

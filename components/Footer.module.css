@@ -1,0 +1,7 @@
+.container {
+  background-color: #c42e00;
+  color: #fff;
+  height: 300px;
+  width: 100%;
+  overflow: hidden;
+}
