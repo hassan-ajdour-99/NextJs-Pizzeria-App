@@ -1,5 +1,6 @@
 import classes from "./Navbar.module.css";
 import Image from "next/image";
+import Link from "next/link";
 
 function Navbar() {
   return (
@@ -16,7 +17,9 @@ function Navbar() {
       </div>
       <div className={classes.item}>
         <ul className={classes.list}>
-          <li className={classes.listItem}> Products </li>
+          <Link href="/product/products">
+            <li className={classes.listItem}> Products </li>
+          </Link>
           <li className={classes.listItem}> Blogs </li>
           <li className={classes.listItem}> Contact </li>
         </ul>

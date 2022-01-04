@@ -17,6 +17,9 @@ function PizzaList() {
         <PizzaCard />
         <PizzaCard />
         <PizzaCard />
+        <PizzaCard />
+        <PizzaCard />
+        <PizzaCard />
       </div>
     </div>
   );
