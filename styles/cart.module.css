@@ -1,0 +1,37 @@
+.container {
+  padding: 50px;
+  display: flex;
+}
+
+.left {
+  flex: 2;
+}
+
+.right {
+  flex: 1;
+}
+
+.imageContainer {
+  width: 80px;
+  height: 50px;
+  position: absolute;
+}
+
+.table {
+  width: 100%;
+  border-spacing: 20px;
+}
+
+.name {
+  font-size: 16px;
+  color: #c42e00;
+}
+
+.total {
+  width: 90%;
+  font-family: 18px;
+}
+
+.table td span {
+  font-size: 18px;
+}

@@ -1,5 +1,5 @@
 .container {
-  height: calc(100vh - 100px);
+  height: calc(100vh - 60px);
   display: flex;
 }
 
@@ -72,4 +72,38 @@
   font-size: 14px;
   padding: 0 5px;
   border-radius: 10px;
+}
+
+.ingredience {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  margin-right: 0;
+  font-size: 15px;
+}
+
+.checkbox {
+  width: 20px;
+  height: 20px;
+}
+
+.qauntity {
+  width: 50px;
+  height: 30px;
+}
+
+.button {
+  height: 33px;
+  width: 20%;
+  color: #fff;
+  background-color: #c42e00;
+  border: none;
+  margin-left: 10px;
+  border-radius: 15px;
+  font-size: 15px;
+  cursor: pointer;
 }
