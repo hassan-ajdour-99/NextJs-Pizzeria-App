@@ -45,6 +45,64 @@ function Cart() {
               <span className={classes.total}> 89$ </span>
             </td>
           </tr>
+          <tr>
+            <td>
+              <div className={classes.imageContainer}>
+                <Image
+                  src="/img/pizza2.png"
+                  alt=""
+                  objectFit="cover"
+                  layout="fill"
+                />
+              </div>
+            </td>
+            <td>
+              <span className={classes.name}> Margaerita Pizza </span>
+            </td>
+            <td>
+              <span className={classes.extras}>
+                Extras Ingredience , double spicy .
+              </span>
+            </td>
+            <td>
+              <span className={classes.price}> 19.90$ </span>
+            </td>
+            <td>
+              <span className={classes.quantity}> 3 </span>
+            </td>
+            <td>
+              <span className={classes.total}> 89$ </span>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div className={classes.imageContainer}>
+                <Image
+                  src="/img/pizza2.png"
+                  alt=""
+                  objectFit="cover"
+                  layout="fill"
+                />
+              </div>
+            </td>
+            <td>
+              <span className={classes.name}> Margaerita Pizza </span>
+            </td>
+            <td>
+              <span className={classes.extras}>
+                Extras Ingredience , double spicy .
+              </span>
+            </td>
+            <td>
+              <span className={classes.price}> 19.90$ </span>
+            </td>
+            <td>
+              <span className={classes.quantity}> 3 </span>
+            </td>
+            <td>
+              <span className={classes.total}> 89$ </span>
+            </td>
+          </tr>
         </table>
       </div>
       <div className={classes.right}>
@@ -59,6 +117,7 @@ function Cart() {
           <div className={classes.totalText}>
             <b className={classes.totalTextTitle}> TOTAL : </b> up %50
           </div>
+          <button className={classes.button}> Check Out </button>
         </div>
       </div>
     </div>

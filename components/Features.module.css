@@ -2,6 +2,7 @@
   height: calc(100vh - 100px);
   background-color: #c42e00;
   overflow: hidden;
+  position: relative;
 }
 
 .arrowContainer {
@@ -28,4 +29,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media (max-width: 500px) {
+  .container {
+    height: 60vh;
+    width: 800px;
+    overflow: hidden;
+  }
 }

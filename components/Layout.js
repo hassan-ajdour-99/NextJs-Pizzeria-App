@@ -7,7 +7,7 @@ export default function Layout({ children }) {
     <Fragment>
       <Navbar />
       {children}
-      <Footer />
+      {/* <Footer /> */}
     </Fragment>
   );
 }

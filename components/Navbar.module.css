@@ -83,3 +83,20 @@
   justify-content: center;
   font-weight: bold;
 }
+
+@media (max-width: 500px) {
+  .item:nth-child(3) {
+    display: none;
+  }
+  .item {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .container {
+    width: 800px;
+    height: 100px;
+    padding: 0px 50px;
+  }
+}

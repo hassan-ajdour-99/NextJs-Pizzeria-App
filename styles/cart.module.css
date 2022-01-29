@@ -20,6 +20,7 @@
 .table {
   width: 100%;
   border-spacing: 20px;
+  padding: 10px;
 }
 
 .name {
@@ -34,4 +35,31 @@
 
 .table td span {
   font-size: 18px;
+}
+
+.wrapper {
+  width: 90%;
+  max-height: 300px;
+  background-color: #333;
+  padding: 50px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #fff;
+}
+
+.totalTextTitle {
+  margin-right: 10px;
+}
+
+.button {
+  margin-top: 15px;
+  border: none;
+  color: #c42e00;
+  background-color: #f7f1f0;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 9px;
+  width: 60%;
 }

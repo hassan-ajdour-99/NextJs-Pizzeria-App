@@ -1,0 +1,89 @@
+.container {
+  padding: 50px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.left {
+  flex: 2;
+}
+
+.table {
+  width: 80%;
+  text-align: left;
+  margin-bottom: 50px;
+}
+
+.right {
+  flex: 1;
+}
+
+.wrapper {
+  width: 90%;
+  max-height: 300px;
+  background-color: #333;
+  padding: 50px;
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #fff;
+}
+
+.totalTextTitle {
+  margin-right: 10px;
+}
+
+.button {
+  margin-top: 20px;
+  border: none;
+  color: teal;
+  background-color: #f7f1f0;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 9px;
+  width: 60%;
+  cursor: not-allowed;
+}
+
+.row {
+  display: flex;
+  grid-template-rows: 1fr 1f 1fr 1fr;
+  gap: 7rem;
+}
+
+.done {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.inprogress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: inProgress 1s infinite alternate;
+}
+
+.undone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0.3;
+}
+
+@keyframes inProgress {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* check & Display none */
+.undone .checkedIcon,
+.inprogress .checkedIcon {
+  display: none;
+}
