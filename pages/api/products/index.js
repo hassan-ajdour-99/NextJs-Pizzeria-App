@@ -12,7 +12,6 @@ export default async function handler(req, res) {
     try {
       const allProducts = await Product.find();
       res.status(200).json(allProducts);
-      console.log(allProducts);
     } catch (error) {
       res.status(500).json(error);
     }
