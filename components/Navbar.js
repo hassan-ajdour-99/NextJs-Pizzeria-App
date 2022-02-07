@@ -1,11 +1,18 @@
 import classes from "./Navbar.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import { useSelector } from "react-redux";
 
 function Navbar() {
+  const quantity = useSelector((state) => state.cart.quantity);
+
+  console.log(quantity);
+
   return (
     <div className={classes.container}>
-      <h1 className={classes.brand}>MeinePizzeria</h1>
+      <Link href="/">
+        <h1 className={classes.brand}>MeinePizzeria</h1>
+      </Link>
       <div className={classes.item}>
         <div className={classes.callButton}>
           <Image src="/img/telephone.png" alt="" height="30px" width="30px" />
@@ -24,12 +31,14 @@ function Navbar() {
           <li className={classes.listItem}> Contact </li>
         </ul>
       </div>
-      <div className={classes.item}>
-        <div className={classes.cart}>
-          <Image src="/img/cart.png" alt="" width="35px" height="35px" />
-          <div className={classes.counter}> 2 </div>
+      <Link href="/cart">
+        <div className={classes.item}>
+          <div className={classes.cart}>
+            <Image src="/img/cart.png" alt="" width="35px" height="35px" />
+            <div className={classes.counter}> {quantity} </div>
+          </div>
         </div>
-      </div>
+      </Link>
     </div>
   );
 }

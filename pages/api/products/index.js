@@ -5,7 +5,7 @@ export default async function handler(req, res) {
   const { method } = req;
 
   // GET DATABASE
-  dbConnect();
+  await dbConnect();
 
   // GET PRODUCT
   if (method === "GET") {

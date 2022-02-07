@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./PizzaList.module.css";
 import PizzaCard from "./PizzaCard";
 
-function PizzaList({ productList }) {
+function PizzaList(props) {
   return (
     <div className={classes.container}>
       <h1 className={classes.title}> The Best Pizza In Sale </h1>
@@ -11,7 +11,7 @@ function PizzaList({ productList }) {
         sequi culpa animi possimus numquam at recusandae .
       </p>
       <div className={classes.wrapper}>
-        {productList?.map((pizza) => (
+        {props.productList?.map((pizza) => (
           <PizzaCard key={pizza._id} pizza={pizza} />
         ))}
       </div>

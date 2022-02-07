@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import Image from "next/image";
 import classes from "../../styles/order.module.css";
 
-function order() {
-  const status = 0;
+function order({ order }) {
+  const status = order.status;
+
+  console.log(order.status);
 
   const StatusClass = (index) => {
     if (index - status < 1) {
@@ -23,23 +25,23 @@ function order() {
         <div className={classes.row}>
           <table className={classes.table}>
             <tr className={classes.tr}>
-              <th> ORDER ID </th>
-              <th> CUSTOMER </th>
-              <th> ADDRESS </th>
+              <th> ID </th>
+              <th> Customer </th>
+              <th> Address </th>
               <th> Total </th>
             </tr>
             <tr>
               <td>
-                <span className={classes.id}> 083868A6286898 </span>
+                <span className={classes.id}> {order._id} </span>
               </td>
               <td>
-                <span className={classes.address}> JOE DOE </span>
+                <span className={classes.address}> {order.customer} </span>
               </td>
               <td>
-                <span className={classes.price}> Rabat Sale , 11000 </span>
+                <span className={classes.price}> {order.address} </span>
               </td>
               <td>
-                <span className={classes.total}> 89$ </span>
+                <span className={classes.total}> {order.status} </span>
               </td>
             </tr>
           </table>
@@ -96,13 +98,17 @@ function order() {
         <div className={classes.wrapper}>
           <h2 className={classes.title}> CART TOTAL </h2>
           <div className={classes.totalText}>
-            <b className={classes.totalTextTitle}> Subtotal : </b> up %50
+            <b className={classes.totalTextTitle}>
+              Subtotal : {order.totalAmount}
+            </b>
           </div>
           <div className={classes.totalText}>
             <b className={classes.totalTextTitle}> Discount : </b> up %50
           </div>
           <div className={classes.totalText}>
-            <b className={classes.totalTextTitle}> TOTAL : </b> up %50
+            <b className={classes.totalTextTitle}>
+              TOTAL : Subtotal : {order.totalAmount}
+            </b>
           </div>
           <button disabled className={classes.button}>
             Paid
@@ -112,5 +118,16 @@ function order() {
     </div>
   );
 }
-
 export default order;
+
+export const getServerSideProps = async ({ params }) => {
+  // const response = await axios.get("http://localhost:3000/api/products");
+  // Fetch Data from Api
+  const response = await fetch(`http://localhost:3000/api/orders/${params.id}`);
+  const data = await response.json();
+  return {
+    props: {
+      order: data,
+    },
+  };
+};

@@ -3,6 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import classes from "../../styles/product.module.css";
 import axios from "axios";
+import { Dispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../../Redux/cartSlice";
 
 const pizzaitems = {
   id: 1,
@@ -16,10 +19,43 @@ const pizzaimage = {
   image: "/img/size.png",
 };
 
-function product(props) {
-  const [size, setSize] = useState(0);
+function product({ pizzalist }) {
+  const pizza = pizzalist;
 
-  const pizza = props.pizzalist;
+  const [price, setPrice] = useState(pizza.prices[0]);
+  const [size, setSize] = useState(0);
+  const [extraOptions, setExtraOptions] = useState([]);
+  const [quantity, setQuantity] = useState(1);
+  const dispatch = useDispatch();
+
+  const changePrice = (number) => {
+    setPrice(price + number);
+  };
+
+  // You have to understand option.price / option.text
+  const handleSize = (sizeIndex) => {
+    const difference = pizza.prices[sizeIndex] - pizza.prices[size];
+    setSize(sizeIndex);
+    changePrice(difference);
+  };
+
+  const eventHandlerchange = (event, option) => {
+    const checked = event.target.checked;
+
+    if (checked) {
+      changePrice(option.price);
+      // Every click or check we add new option to state
+      setExtraOptions([...extraOptions, option]);
+    } else {
+      changePrice(-option.price);
+      // DELETE OPTION
+      setExtraOptions(extraOptions.filter((extra) => extra._id !== option._id));
+    }
+  };
+
+  const CartChnageHandler = () => {
+    dispatch(addProduct({ ...pizza, price, quantity }));
+  };
 
   return (
     <div className={classes.container}>
@@ -37,65 +73,48 @@ function product(props) {
         <h1 className={classes.title}>
           {pizza.title} <span className={classes.spanTitle}> Pizza </span>
         </h1>
-        <span className={classes.price}>${pizza.prices[size]}</span>
+        <span className={classes.price}>${price}</span>
         <p className={classes.description}>{pizza.desc}</p>
         <h3 className={classes.chooseSize}> Choose The Size : </h3>
         <div className={classes.sizes}>
-          <div className={classes.size} onClick={() => setSize(0)}>
+          <div className={classes.size} onClick={() => handleSize(0)}>
             <Image src={pizzaimage.image} alt="" layout="fill" />
             <span className={classes.number}> small </span>
           </div>
-          <div className={classes.size} onClick={() => setSize(1)}>
+          <div className={classes.size} onClick={() => handleSize(1)}>
             <Image src={pizzaimage.image} alt="" layout="fill" />
             <span className={classes.number}> Meduim </span>
           </div>
-          <div className={classes.size} onClick={() => setSize(2)}>
+          <div className={classes.size} onClick={() => handleSize(2)}>
             <Image src={pizzaimage.image} alt="" layout="fill" />
             <span className={classes.number}> Large </span>
           </div>
         </div>
         <h3 className={classes.choose}> Choose Additional Inreadience </h3>
         <div className={classes.ingredience}>
-          <div className={classes.option}>
-            <input
-              type="checkbox"
-              id="double"
-              name="double"
-              className={classes.checkbox}
-            />
-            <label htmlFor="double"> Double Incredience </label>
-          </div>
-          <div className={classes.option}>
-            <input
-              type="checkbox"
-              id="cheese"
-              name="cheese"
-              className={classes.checkbox}
-            />
-            <label htmlFor="spicy"> Extra Chesse </label>
-          </div>
-          <div className={classes.option}>
-            <input
-              type="checkbox"
-              id="garlis"
-              name="garlis"
-              className={classes.checkbox}
-            />
-            <label htmlFor="garlis"> Garlis sousse </label>
-          </div>
-          <div className={classes.option}>
-            <input
-              type="checkbox"
-              id="spicy"
-              name="spicy"
-              className={classes.checkbox}
-            />
-            <label htmlFor="spicy"> Spicy Sousse </label>
-          </div>
+          {pizza.extraOptions.map((option) => (
+            <div className={classes.option} key={option._id}>
+              <input
+                type="checkbox"
+                id={option.text}
+                name={option.text}
+                className={classes.checkbox}
+                onChange={(event) => eventHandlerchange(event, option)}
+              />
+              <label htmlFor="double"> {option.text} </label>
+            </div>
+          ))}
         </div>
         <div className={classes.add}>
-          <input type="number" defaultValue={1} className={classes.qauntity} />
-          <button className={classes.button}> Add to cart </button>
+          <input
+            type="number"
+            defaultValue={quantity}
+            onChange={(event) => setQuantity(event.target.value)}
+            className={classes.qauntity}
+          />
+          <button className={classes.button} onClick={CartChnageHandler}>
+            Add to cart
+          </button>
         </div>
       </div>
     </div>
