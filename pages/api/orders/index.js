@@ -1,5 +1,5 @@
 import dbConnect from "../../../util/mongo";
-import Order from "../../../Models/Product";
+import Order from "../../../Models/Order";
 
 const handler = async (req, res) => {
   const { method } = req;
@@ -10,19 +10,19 @@ const handler = async (req, res) => {
     try {
       const orders = await Order.find();
       res.status(200).json(orders);
-    } catch (error) {
-      res.status(500).json(error);
-      console.log(error);
+      console.log(orders);
+    } catch (err) {
+      res.status(500).json(err);
     }
   }
-
   if (method === "POST") {
     try {
       const order = await Order.create(req.body);
-      res.status(200).json(order);
-    } catch (error) {
-      res.status(500).json(error);
-      console.log(error);
+      res.status(201).json(order);
+      console.log("order Added successfully!");
+      console.log(order);
+    } catch (err) {
+      res.status(500).json(err);
     }
   }
 };

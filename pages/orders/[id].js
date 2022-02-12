@@ -5,8 +5,6 @@ import classes from "../../styles/order.module.css";
 function order({ order }) {
   const status = order.status;
 
-  console.log(order.status);
-
   const StatusClass = (index) => {
     if (index - status < 1) {
       return classes.done;
@@ -41,7 +39,7 @@ function order({ order }) {
                 <span className={classes.price}> {order.address} </span>
               </td>
               <td>
-                <span className={classes.total}> {order.status} </span>
+                <span className={classes.total}> ${order.totalAmount} </span>
               </td>
             </tr>
           </table>
@@ -99,7 +97,7 @@ function order({ order }) {
           <h2 className={classes.title}> CART TOTAL </h2>
           <div className={classes.totalText}>
             <b className={classes.totalTextTitle}>
-              Subtotal : {order.totalAmount}
+              Subtotal : ${order.totalAmount}
             </b>
           </div>
           <div className={classes.totalText}>
@@ -107,7 +105,7 @@ function order({ order }) {
           </div>
           <div className={classes.totalText}>
             <b className={classes.totalTextTitle}>
-              TOTAL : Subtotal : {order.totalAmount}
+              TOTAL : Subtotal : ${order.totalAmount}
             </b>
           </div>
           <button disabled className={classes.button}>

@@ -11,7 +11,7 @@ function PizzaList(props) {
         sequi culpa animi possimus numquam at recusandae .
       </p>
       <div className={classes.wrapper}>
-        {props.productList?.map((pizza) => (
+        {props.productList.map((pizza) => (
           <PizzaCard key={pizza._id} pizza={pizza} />
         ))}
       </div>

@@ -10,16 +10,15 @@ import {
   usePayPalScriptReducer,
 } from "@paypal/react-paypal-js";
 import { useRouter } from "next/router";
-import reset from "../Redux/cartSlice";
+import { reset } from "../Redux/cartSlice";
 import axios from "axios";
 
 function Cart() {
+  const cart = useSelector((state) => state.cart);
   const [cash, setCash] = useState(false);
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
   const router = useRouter();
-
-  const cart = useSelector((state) => state.cart);
 
   // Cash  Button Handler
   const cashChangeHandler = () => {
@@ -29,16 +28,18 @@ function Cart() {
   // Make Order
   const createOrders = async (data) => {
     try {
-      const res = await axios.get("http://localhost:3000/api/orders", data);
+      const res = await axios.post("http://localhost:3000/api/orders", data);
 
-      res.status === 201 && router.push("/orders/" + res.data._id);
-      dispatch(reset());
+      if (res.status === 201) {
+        router.push("/orders/" + res.data._id);
+        dispatch(reset());
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
-  // Paypal payment Methodcc
+  // Paypal payment Method
   // This values are the props in the UI
   const amount = cart.total;
   const currency = "USD";
@@ -89,7 +90,7 @@ function Cart() {
               const shipping = details.purchase_units[0].shipping;
               createOrders({
                 customer: shipping.name.full_name,
-                address: shipping.address.line_1,
+                address: shipping.address_line_1,
                 totalAmount: cart.total,
                 method: 1,
               });
@@ -165,7 +166,7 @@ function Cart() {
               <PayPalScriptProvider
                 options={{
                   "client-id":
-                    "Af3f-6CEVfzzGSO94PFQHCCR7h8QnaS3rY2asz6k69hZMytMDEt5tPhrsrZLwm68_sg5uFuDlVEJfdRZ",
+                    "AR8UYnvMx-IjEJielXCp78IigAAdtXE57V-Ce66YEDPN20rKHb4cBoPkUR7NZjIXpTcuGpmBA8Cy-Elx",
                   components: "buttons",
                   currency: "USD",
                   "disable-funding": "credit,card,p24",
@@ -181,7 +182,9 @@ function Cart() {
           )}
         </div>
       </div>
-      {cash && <CashOrder total={cart.total} createOrder={createOrders} />}
+      {cash && (
+        <CashOrder totalAmount={cart.total} createOrder={createOrders} />
+      )}
     </div>
   );
 }

@@ -31,7 +31,7 @@ function Navbar() {
           <li className={classes.listItem}> Contact </li>
         </ul>
       </div>
-      <Link href="/cart">
+      <Link href="/cart" passHref>
         <div className={classes.item}>
           <div className={classes.cart}>
             <Image src="/img/cart.png" alt="" width="35px" height="35px" />
